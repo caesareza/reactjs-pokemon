@@ -1,9 +1,36 @@
 body{
   padding: 0;
   margin: 0;
-  background: #efefef;
+  background: #6cbbac;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
 }
 a{
   text-decoration: none;
   color: teal;
+}
+.page{
+  background: #efefef;
+}
+header{
+  text-align: center;
+  padding: 15px 0;
+}
+header .menu{
+  display: flex;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  justify-content: center;
+}
+header .menu > *{
+  padding: 5px 15px;
+  font-weight: 700;
+}
+footer{
+  background: #6cbbac;
+  color: #1f5148;
+  font-size: 14px;
+}
+.container{
+  padding: 20px;
 }
