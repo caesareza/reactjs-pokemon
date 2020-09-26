@@ -1,10 +1,11 @@
-import { apiFindAllPokemons } from './api/apiPokemon';
-import { findAllPokemonBegin, findAllPokemonSuccess, findAllPokemonError } from './actionPokemonList';
+import {apiFindAllPokemon, apiFindOnePokemon} from './api/apiPokemon';
+import { findAllPokemonBegin, findAllPokemonSuccess, findAllPokemonError } from './actions/actionPokemonList';
+import { findOnePokemonBegin, findOnePokemonSuccess, findOnePokemonError } from './actions/actionPokemonDetail';
 
 export const fetchPokemon = payload => async dispatch => {
     try{
         dispatch(findAllPokemonBegin());
-        const res = await apiFindAllPokemons(payload);
+        const res = await apiFindAllPokemon(payload);
         dispatch(findAllPokemonSuccess(res));
         return res;
     } catch (e){
@@ -12,3 +13,18 @@ export const fetchPokemon = payload => async dispatch => {
         return e
     }
 }
+
+export const fetchOnePokemon = payload => async dispatch => {
+    try{
+        dispatch(findOnePokemonBegin());
+        const res = await apiFindOnePokemon(payload);
+        console.log('fetchOnePokemon');
+        console.log(res);
+        dispatch(findOnePokemonSuccess(res));
+        return res;
+    }catch (e) {
+        dispatch(findOnePokemonError(e));
+        return e;
+    }
+}
+

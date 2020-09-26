@@ -2,7 +2,7 @@ import {
     POKEMON_FETCH,
     POKEMON_SUCCESS,
     POKEMON_ERROR
-} from '../actionPokemonList';
+} from '../actions/actionPokemonList';
 
 const initialState = {
     count: 0,
@@ -31,7 +31,7 @@ export default function (state = initialState, action) {
                 ...state,
                 count: 0,
                 isFetching: false,
-                data: null,
+                data: [],
                 error: action.payload
             }
         default:
