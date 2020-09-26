@@ -10,15 +10,15 @@ const Loading = _ => (
 )
 
 const Pokemonnya = ({data = [], detailPokemon}) => (
-    <>
+    <div className="pokemons">
         {data.map((pokemon, index) => (
-            <div key={index}>
-                <span onClick={() => detailPokemon(pokemon.name)}>
+            <div key={index} className="list">
+                <div className="link" onClick={() => detailPokemon(pokemon.name)}>
                     {pokemon.name}
-                </span>
+                </div>
             </div>
         ))}
-    </>
+    </div>
 )
 
 const PokemonList = () => {

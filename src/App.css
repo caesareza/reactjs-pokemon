@@ -30,7 +30,25 @@ footer{
   background: #6cbbac;
   color: #1f5148;
   font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
 }
 .container{
-  padding: 20px;
+  padding: 0 20px 20px;
+}
+
+.pokemons{}
+.pokemons .list{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+  box-shadow: 2px 5px 10px -10px #666;
+}
+.pokemons .list .link{
+  cursor: pointer;
+  display: block;
+  padding: 15px;
+}
+.pokemons .list .link:hover{
+  color: teal;
 }

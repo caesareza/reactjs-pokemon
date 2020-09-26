@@ -27,7 +27,7 @@ function App() {
                 </div>
                 <footer>
                     <div className="container">
-                        2020
+                        &copy; September 2020
                         <p>
                             Pokémon and Pokémon character names are trademarks of Nintendo.
                         </p>
