@@ -10,7 +10,7 @@ function App() {
             <header>
                 <ul>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/detail">Pokemon Detail</Link></li>
+                    <li><Link to="/my-pokemon">My Pokemon</Link></li>
                 </ul>
             </header>
 

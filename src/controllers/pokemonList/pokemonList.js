@@ -37,7 +37,7 @@ const PokemonList = () => {
             error: state.pokemonx.error,
         }), shallowEqual);
 
-    const boundAction = useCallback(() => {
+    const loadPokemon = useCallback(() => {
         return dispatch(fetchPokemon());
     }, [dispatch]);
 
@@ -46,8 +46,12 @@ const PokemonList = () => {
     }
 
     useEffect(() => {
-        if (data.length === 0) boundAction()
-    }, [boundAction, data])
+        // page title
+        document.title = 'Catch - Pokemon';
+
+        // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
+        if (data.length === 0) loadPokemon();
+    }, [loadPokemon, data])
 
     return (
         <>

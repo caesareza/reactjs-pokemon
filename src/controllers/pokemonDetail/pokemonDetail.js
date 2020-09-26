@@ -23,15 +23,18 @@ const PokemonDetail = () => {
     const isFetching = useSelector(state => state.pokemonxDetail.isFetching); // loading status
 
     // boundAction fungsi untuk request ke api untuk mengambil data dari server
-    const boundAction = useCallback(() => {
+    const loadPokemon = useCallback(() => {
         return dispatch(fetchOnePokemon(name));
     }, [dispatch]);
 
     useEffect(() => {
+        // page title
+        document.title = `${name} - Pokemon`;
+
         // jika data tidak exist di redux maka hit fungsi boundAction()
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
-        if(data.length === 0 || data.name !== name) boundAction()
-    }, [boundAction, data, name]);
+        if(data.length === 0 || data.name !== name) loadPokemon()
+    }, [loadPokemon, data, name]);
 
     return(
         <>
