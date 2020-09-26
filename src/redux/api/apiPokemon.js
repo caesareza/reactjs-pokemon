@@ -1,6 +1,6 @@
 import axios from './axios';
 
-export async function apiFindAllPokemons() {
+export async function apiFindAllPokemon() {
     const uri = 'pokemon?limit=10';
     try{
         const response = await axios({
@@ -13,7 +13,7 @@ export async function apiFindAllPokemons() {
     }
 }
 
-export async function apiFindOnePokemons(name){
+export async function apiFindOnePokemon(name){
     const uri = `pokemon/${name}`;
     try{
         const response = await axios({
