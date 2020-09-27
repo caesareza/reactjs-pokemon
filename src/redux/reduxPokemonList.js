@@ -18,8 +18,6 @@ export const fetchOnePokemon = payload => async dispatch => {
     try{
         dispatch(findOnePokemonBegin());
         const res = await apiFindOnePokemon(payload);
-        console.log('fetchOnePokemon');
-        console.log(res);
         dispatch(findOnePokemonSuccess(res));
         return res;
     }catch (e) {

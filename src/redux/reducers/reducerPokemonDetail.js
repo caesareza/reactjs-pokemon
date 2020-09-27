@@ -6,9 +6,9 @@ import {
 
 const initialState = {
     count: 0,
-    data: [],
+    data: {},
     isFetching: false,
-    error: null
+    error: null,
 }
 
 export default function (state = initialState, action){
@@ -17,21 +17,25 @@ export default function (state = initialState, action){
             return{
                 ...state,
                 isFetching: true
-            }
+            };
         case POKEMON_DETAIL_SUCCESS:
+            console.log(action.payload.data);
             return{
                 ...state,
                 isFetching: false,
-                data: action.payload.data,
+                data: {
+                    name: action.payload.data.name,
+                    photo: action.payload.data.sprites.front_default,
+                },
                 error: null
-            }
+            };
         case POKEMON_DETAIL_ERROR:
             return{
                 ...state,
                 isFetching: false,
-                data: [],
+                data: {},
                 error: action.payload
-            }
+            };
         default:
             return state;
     }
