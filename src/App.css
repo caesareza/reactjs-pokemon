@@ -62,3 +62,10 @@ footer{
   font-weight: 300;
   text-transform: capitalize;
 }
+.pokemons-detail .catch{
+  background: coral;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 0;
+  cursor: pointer;
+}
