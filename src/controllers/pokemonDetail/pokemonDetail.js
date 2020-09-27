@@ -15,9 +15,11 @@ const SavePokemon = () => (
     </div>
 )
 
-const CatchPokemon = ({lempar}) => (
-    <div className="catch">
-        <div onClick={lempar}>Catch The Pokemon</div>
+const CatchPokemon = ({lempar, throwing}) => (
+    <div className="catch" onClick={lempar}>
+        {
+            throwing ? ( 'Throwing Pokemon Ball' ) : ('Catch The Pokemon')
+        }
     </div>
 )
 
@@ -31,37 +33,32 @@ const PokemonDetailContainer = ({detail}) => (
 )
 
 const PokemonDetail = () => {
-    const throwProbability = Math.floor(Math.random() * Math.floor(2))
     const dispatch = useDispatch(); // hook dispatch
     const {name} = useParams(); // ambil nama pokemon
     const [isCaught, setIsCaught] = useState(false);
+    const [throwing, setThrowing] = useState(false);
 
-    // const data = useSelector(state => state.pokemonxDetail.data); // data pokemon
-    // const isFetching = useSelector(state => state.pokemonxDetail.isFetching); // loading status
+    const data = useSelector(state => state.pokemonxDetail.data); // data pokemon
+    const isFetching = useSelector(state => state.pokemonxDetail.isFetching); // loading status
 
-    const {
-        count,
-        data,
-        isFetching,
-        error
-    } = useSelector(
-        state => ({
-            count: state.pokemonxDetail.count,
-            data: state.pokemonxDetail.data,
-            isFetching: state.pokemonxDetail.isFetching,
-            error: state.pokemonxDetail.error,
-        }), shallowEqual);
-
+    // throw pokemon ball
+    const catchUsingPokemonBall = () => {
+        // setThrowing(true);
+        let throwProbability = Math.floor(Math.random() * Math.floor(2));
+        if(throwProbability === 1){
+            console.log('pokemon tertangkap');
+        }
+    }
 
     // boundAction fungsi untuk request ke api untuk mengambil data dari server
     const loadPokemon = useCallback(() => {
         return dispatch(fetchOnePokemon(name));
     }, [dispatch, name]);
 
-
+    // fetch pokemon data using useEffect
     useEffect(() => {
+        // page title
         document.title = `Detail - Pokemon`;
-        console.log(throwProbability);
 
         // jika data tidak exist di redux maka hit fungsi boundAction()
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
@@ -69,9 +66,11 @@ const PokemonDetail = () => {
 
     }, [loadPokemon, data, name]);
 
-    const catchUsingPokemonBall = () => {
-        console.log('catchUsingPokemonBall')
-    }
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setThrowing(false);
+    //     }, 5000);
+    // }, [throwing])
 
     return (
         <>
@@ -80,7 +79,7 @@ const PokemonDetail = () => {
             ) : (
                 <div className="pokemons-detail">
                     <PokemonDetailContainer detail={data} />
-                    <CatchPokemon throw={catchUsingPokemonBall} />
+                    <CatchPokemon lempar={catchUsingPokemonBall} throwing={throwing} />
                 </div>
             )}
         </>
