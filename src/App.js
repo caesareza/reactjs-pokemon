@@ -31,6 +31,10 @@ function App() {
                         <p>
                             Pokémon and Pokémon character names are trademarks of Nintendo.
                         </p>
+                        <div className="sitemap">
+                            <Link to="/">Home</Link>
+                            <Link to="/my-pokemon">My Pokemon</Link>
+                        </div>
                     </div>
                 </footer>
             </div>

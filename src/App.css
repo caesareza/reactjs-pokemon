@@ -33,6 +33,11 @@ footer{
   text-align: center;
   padding: 20px 0;
 }
+footer .sitemap{}
+footer .sitemap a{
+  margin: 0 10px;
+}
+
 .container{
   padding: 0 20px 20px;
 }
@@ -61,4 +66,11 @@ footer{
   font-size: 30px;
   font-weight: 300;
   text-transform: capitalize;
+}
+.pokemons-detail .catch{
+  background: coral;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 0;
+  cursor: pointer;
 }
