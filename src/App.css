@@ -52,3 +52,13 @@ footer{
 .pokemons .list .link:hover{
   color: teal;
 }
+
+.pokemons-detail{
+  text-align: center;
+}
+.pokemons-detail .foto{}
+.pokemons-detail .nama{
+  font-size: 30px;
+  font-weight: 300;
+  text-transform: capitalize;
+}
