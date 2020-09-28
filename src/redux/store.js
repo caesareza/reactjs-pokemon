@@ -1,20 +1,37 @@
-import { applyMiddleware, createStore } from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducers from './reducers';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistStore } from 'redux-persist';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router'
 
-// export default createStore(rootReducers, applyMiddleware(thunk, createLogger));
+export const history = createBrowserHistory();
+// const persistedReducers = persistReducer(persistConfig, rootReducers);
 
-const persistConfig = {
-    key: 'myPokemons',
-    storage: storage,
-    whitelist: ['mypokemons']
-};
+const configureStore = preloadedState => {
+    const store = createStore(
+        rootReducers(history),
+        preloadedState,
+        compose(applyMiddleware(
+            thunk,
+            createLogger,
+            routerMiddleware(history),
+        ))
+    )
 
-const persistedReducers = persistReducer(persistConfig, rootReducers);
-const middleware = applyMiddleware(thunk, createLogger);
+    return{
+        ...store,
+        persistor: persistStore(store),
+    }
+}
 
-export const store = createStore(persistedReducers, middleware);
-export const persistor = persistStore(store);
+
+export default configureStore;
+
+//
+//
+// const middleware = applyMiddleware(thunk, createLogger);
+//
+// export const store = createStore(persistedReducers, middleware);
+// export const persistor = persistStore(store);

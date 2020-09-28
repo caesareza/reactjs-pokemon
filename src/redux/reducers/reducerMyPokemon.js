@@ -3,6 +3,8 @@ import {
     POKEMON_RELEASE,
     POKEMON_RELEASE_ALL
 } from '../actions/actionMyPokemon';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const initialState = {
     loading: false,
@@ -10,27 +12,33 @@ const initialState = {
     mypokemons: []
 }
 
-export default function (state = initialState, action){
+const persistConfig = {
+    key: 'myPokemons',
+    storage: storage,
+    whitelist: ['mypokemons'],
+};
+
+export default persistReducer(persistConfig,(state = initialState, action) => {
     switch (action.type) {
         case POKEMON_CATCH:
-            return{
+            return {
                 ...state,
                 message: 'pokemon catch',
                 mypokemons: action.payload.mypokemons
             };
         case POKEMON_RELEASE:
-            return{
+            return {
                 ...state,
                 message: 'pokemon release',
                 mypokemons: action.payload.mypokemons
             }
         case POKEMON_RELEASE_ALL:
-            return{
+            return {
                 ...state,
                 message: 'pokemon release all',
                 mypokemons: []
             }
         default:
-            return state
+            return state;
     }
-}
+});

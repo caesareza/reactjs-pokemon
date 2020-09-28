@@ -28,13 +28,15 @@ const PokemonList = () => {
         count,
         data,
         isFetching,
-        error
+        error,
+        mypokemons
     } = useSelector(
         state => ({
             count: state.pokemonx.count,
             data: state.pokemonx.data,
             isFetching: state.pokemonx.isFetching,
-            error: state.pokemonx.error
+            error: state.pokemonx.error,
+            mypokemons: state.pokemonxMy.mypokemons,
         }), shallowEqual);
 
     const loadPokemon = useCallback(() => {
@@ -45,11 +47,21 @@ const PokemonList = () => {
         history.push(`pokemon/${name}`);
     }
 
+
+
     useEffect(() => {
         // page title
         document.title = 'Catch - Pokemon';
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
         if (data.length === 0) loadPokemon();
+
+
+        if(mypokemons.length > 0){
+            console.log('mypokemons');
+            console.log(mypokemons[0].name);
+
+        }
+
     }, [loadPokemon, data])
 
     return (
