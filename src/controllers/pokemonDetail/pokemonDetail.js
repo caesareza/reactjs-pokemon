@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {fetchOnePokemon} from '../../redux/reduxPokemonList';
 
@@ -18,7 +18,7 @@ const SavePokemon = () => (
 const CatchPokemon = ({lempar, throwing}) => (
     <div className="catch" onClick={lempar}>
         {
-            throwing ? ( 'Throwing Pokemon Ball' ) : ('Catch The Pokemon')
+            throwing ? ( 'Catching ...' ) : ('Catch The Pokemon')
         }
     </div>
 )
@@ -43,9 +43,10 @@ const PokemonDetail = () => {
 
     // throw pokemon ball
     const catchUsingPokemonBall = () => {
-        // setThrowing(true);
+        setThrowing(true);
         let throwProbability = Math.floor(Math.random() * Math.floor(2));
         if(throwProbability === 1){
+            setIsCaught(true);
             console.log('pokemon tertangkap');
         }
     }
@@ -58,7 +59,7 @@ const PokemonDetail = () => {
     // fetch pokemon data using useEffect
     useEffect(() => {
         // page title
-        document.title = `Detail - Pokemon`;
+        document.title = `${name} - Pokemon`;
 
         // jika data tidak exist di redux maka hit fungsi boundAction()
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
@@ -66,11 +67,13 @@ const PokemonDetail = () => {
 
     }, [loadPokemon, data, name]);
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setThrowing(false);
-    //     }, 5000);
-    // }, [throwing])
+    useEffect(() => {
+        return () => {
+            setTimeout(() => {
+                setThrowing(false);
+            }, 3000);
+        }
+    },[])
 
     return (
         <>
@@ -79,7 +82,13 @@ const PokemonDetail = () => {
             ) : (
                 <div className="pokemons-detail">
                     <PokemonDetailContainer detail={data} />
-                    <CatchPokemon lempar={catchUsingPokemonBall} throwing={throwing} />
+                    {
+                        isCaught ? (
+                            <SavePokemon />
+                        ) : (
+                            <CatchPokemon lempar={catchUsingPokemonBall} throwing={throwing} />
+                        )
+                    }
                 </div>
             )}
         </>

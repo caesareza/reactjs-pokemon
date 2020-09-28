@@ -48,8 +48,6 @@ const PokemonList = () => {
     useEffect(() => {
         // page title
         document.title = 'Catch - Pokemon';
-        console.log('home page');
-        console.log(data);
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
         if (data.length === 0) loadPokemon();
     }, [loadPokemon, data])
