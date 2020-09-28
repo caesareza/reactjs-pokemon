@@ -19,13 +19,14 @@ export default function (state = initialState, action){
                 isFetching: true
             };
         case POKEMON_DETAIL_SUCCESS:
-            console.log(action.payload.data);
+            // console.log(action.payload.data);
             return{
                 ...state,
                 isFetching: false,
                 data: {
                     name: action.payload.data.name,
                     photo: action.payload.data.sprites.front_default,
+                    other: action.payload.data
                 },
                 error: null
             };

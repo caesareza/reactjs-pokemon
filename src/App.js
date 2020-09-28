@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import PokemonList from './controllers/pokemonList';
 import PokemonDetail from './controllers/pokemonDetail';
+import MyPokemon from './controllers/myPokemon/myPokemon';
 import logo from './pokeapi-logo.png';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                     <Switch>
                         <Route exact path="/" component={PokemonList}></Route>
                         <Route exact path="/pokemon/:name" component={PokemonDetail}></Route>
+                        <Route exact path="/my-pokemon" component={MyPokemon}></Route>
                     </Switch>
                 </div>
                 <footer>
