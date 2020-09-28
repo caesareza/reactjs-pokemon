@@ -10,16 +10,44 @@ const Loading = _ => (
     </>
 )
 
-const SavePokemon = ({simpan}) => (
-    <div className="save" onClick={simpan}>
-        Save Pokemon
-    </div>
-)
+const SavePokemon = () => {
+    const [nickName, setNickNamne] = useState('');
+    const savePokemon = (event) => {
+        // const p = [
+        //     {
+        //         id: 1,
+        //         name: 'aaa'
+        //     },
+        //     {
+        //         id: 2,
+        //         name: 'bbb'
+        //     },
+        // ];
+        //
+        // console.log(p);
+        //
+        // dispatch(catchThePokemon({mypokemons: p}));
+
+        event.preventDefault();
+        console.log(nickName);
+    }
+
+    return (
+        <div className="pokemon-form">
+            <div className="alert alert-success">Yeay, you caught this pokemon</div>
+            <form onSubmit={savePokemon}>
+                <input type="text" value={nickName} onChange={e => setNickNamne(e.target.value)}
+                       placeholder="Give your pokemon nick name .. " required="required"/>
+                <input type="submit" value="Save Pokemon"/>
+            </form>
+        </div>
+    )
+}
 
 const CatchPokemon = ({lempar, throwing}) => (
     <div className="catch" onClick={lempar}>
         {
-            throwing ? ( 'Catching ...' ) : ('Catch The Pokemon')
+            throwing ? ('Catching ...') : ('Catch The Pokemon')
         }
     </div>
 )
@@ -39,6 +67,7 @@ const PokemonDetail = () => {
     const [isCaught, setIsCaught] = useState(false);
     const [throwing, setThrowing] = useState(false);
 
+
     const data = useSelector(state => state.pokemonxDetail.data); // data pokemon
     const isFetching = useSelector(state => state.pokemonxDetail.isFetching); // loading status
 
@@ -46,34 +75,17 @@ const PokemonDetail = () => {
     const catchUsingPokemonBall = () => {
         setThrowing(true);
         let throwProbability = Math.floor(Math.random() * Math.floor(2));
-        if(throwProbability === 1){
+        console.log(throwProbability);
+        if (throwProbability === 1) {
             setIsCaught(true);
             console.log('pokemon tertangkap');
         }
-    }
-
-    const savePokemon = () => {
-        const p = [
-            {
-                id: 1,
-                name: 'aaa'
-            },
-            {
-                id: 2,
-                name: 'bbb'
-            },
-        ];
-
-        console.log(p);
-
-        dispatch(catchThePokemon({mypokemons: p}));
     }
 
     // boundAction fungsi untuk request ke api untuk mengambil data dari server
     const loadPokemon = useCallback(() => {
         return dispatch(fetchOnePokemon(name));
     }, [dispatch, name]);
-
 
 
     // fetch pokemon data using useEffect
@@ -88,14 +100,13 @@ const PokemonDetail = () => {
     }, [loadPokemon, data, name]);
 
     useEffect(() => {
+        // unmount throwing state
         return () => {
             setTimeout(() => {
                 setThrowing(false);
             }, 3000);
         }
-
-
-    },[])
+    });
 
     return (
         <>
@@ -103,14 +114,14 @@ const PokemonDetail = () => {
                 <Loading/>
             ) : (
                 <div className="pokemons-detail">
-                    <PokemonDetailContainer detail={data} />
+                    <PokemonDetailContainer detail={data}/>
+                    {/*<SavePokemon/>*/}
                     {
-                        <SavePokemon simpan={savePokemon} />
-                        // isCaught ? (
-                        //     <SavePokemon simpan={savePokemon} />
-                        // ) : (
-                        //     <CatchPokemon lempar={catchUsingPokemonBall} throwing={throwing} />
-                        // )
+                        isCaught ? (
+                            <SavePokemon/>
+                        ) : (
+                            <CatchPokemon lempar={catchUsingPokemonBall} throwing={throwing}/>
+                        )
                     }
                 </div>
             )}

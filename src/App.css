@@ -74,3 +74,52 @@ footer .sitemap a{
   padding: 5px 0;
   cursor: pointer;
 }
+.pokemons-detail .save{
+  background: darkcyan;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.pokemon-form{
+  padding: 15px 0;
+}
+.pokemon-form form{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 0;
+}
+.pokemon-form form input[type="text"]{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 0 5px;
+  padding: 15px 10px;
+}
+.pokemon-form form input[type="submit"]{
+  background: darkcyan;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 0;
+  cursor: pointer;
+  border: none;
+}
+
+.alert{
+  border: 1px solid #ccc;
+  padding: 15px 10px;
+  border-radius: 5px;
+}
+.alert.alert-notif{
+  background: antiquewhite;
+  color: #666;
+}
+.alert.alert-success{
+  background: #b3e6da;
+  color: #3b898a;
+}
+.alert.alert-success{
+  background: #b3e6da;
+  color: #3b898a;
+}
