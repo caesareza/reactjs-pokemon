@@ -9,7 +9,7 @@ const Loading = _ => (
     </>
 )
 
-const Pokemonnya = ({data = []}) => {
+const Pokemonnya = ({data = [], t}) => {
     const history = useHistory();
     const linkDetailPokemon = (name) => {
         history.push(`pokemon/${name}`);
@@ -20,7 +20,8 @@ const Pokemonnya = ({data = []}) => {
             {data.map((pokemon, index) => (
                 <div key={index} className="list">
                     <div className="link" onClick={() => linkDetailPokemon(pokemon.name)}>
-                        {pokemon.name}
+                        <div className="name">{pokemon.name}</div>
+                        <div className="own">{t(pokemon.name)}</div>
                     </div>
                 </div>
             ))}
@@ -45,6 +46,11 @@ const PokemonList = () => {
             mypokemons: state.pokemonxMy.mypokemons,
         }), shallowEqual);
 
+    const totalPokemon = (p) => {
+        let total = mypokemons.filter(poke => poke.pokemonname === p);
+        return total.length;
+    }
+
     const loadPokemon = useCallback(() => {
         return dispatch(fetchPokemon());
     }, [dispatch]);
@@ -61,7 +67,7 @@ const PokemonList = () => {
             { isFetching ? (
                 <Loading/>
             ) : (
-                <Pokemonnya data={data} />
+                <Pokemonnya data={data} t={totalPokemon} />
             )}
         </>
     )
