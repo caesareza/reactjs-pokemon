@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import PokemonList from './controllers/pokemonList';
 import PokemonDetail from './controllers/pokemonDetail';
-import MyPokemon from './controllers/myPokemon/myPokemon';
+import MyPokemon from './controllers/myPokemon';
 import logo from './pokeapi-logo.png';
 
 function App() {

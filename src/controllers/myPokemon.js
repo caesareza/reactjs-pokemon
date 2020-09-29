@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {releaseOnePokemon, releaseAllMyPokemon} from '../../redux/reduxPokemonList';
+import {releaseOnePokemon, releaseAllMyPokemon} from '../redux/reduxPokemonList';
 
 const MyPokemonRelaseAll = ({releaseAllAction}) => (
     <>
