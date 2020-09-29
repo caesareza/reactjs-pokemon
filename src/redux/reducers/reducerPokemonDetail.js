@@ -19,7 +19,6 @@ export default function (state = initialState, action){
                 isFetching: true
             };
         case POKEMON_DETAIL_SUCCESS:
-            // console.log(action.payload.data);
             return{
                 ...state,
                 isFetching: false,

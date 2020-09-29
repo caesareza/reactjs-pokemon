@@ -5,7 +5,7 @@ axios.interceptors.request.use(
         const newConfig = {
             ...config,
             ...{
-                baseURL: `https://pokeapi.co/api/v2/`,
+                baseURL: '',
                 headers: {
                     'Content-type': 'application/json',
                     Authorization: '',

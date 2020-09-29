@@ -31,18 +31,15 @@ const Pokemonnya = ({data = [], t}) => {
 
 const PokemonList = () => {
     const dispatch = useDispatch();
-    const {
-        count,
-        data,
-        isFetching,
-        error,
-        mypokemons
-    } = useSelector(
+    const { count, data, isFetching, error, url, prevUrl, nextUrl, mypokemons } = useSelector(
         state => ({
             count: state.pokemonx.count,
             data: state.pokemonx.data,
             isFetching: state.pokemonx.isFetching,
             error: state.pokemonx.error,
+            url: state.pokemonx.url,
+            prevUrl: state.pokemonx.prevUrl,
+            nextUrl: state.pokemonx.nextUrl,
             mypokemons: state.pokemonxMy.mypokemons,
         }), shallowEqual);
 
@@ -51,15 +48,23 @@ const PokemonList = () => {
         return total.length;
     }
 
-    const loadPokemon = useCallback(() => {
-        return dispatch(fetchPokemon());
+    const loadPokemon = useCallback((uri) => {
+        return dispatch(fetchPokemon(uri));
     }, [dispatch]);
+
+    const nextPage = () => {
+        loadPokemon(nextUrl);
+    }
+
+    const prevPage = (prev) => {
+        loadPokemon(prevUrl);
+    }
 
     useEffect(() => {
         // page title
         document.title = 'Catch - Pokemon';
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
-        if (data.length === 0) loadPokemon();
+        if (data.length === 0) loadPokemon(url);
     }, [loadPokemon, data])
 
     return (
@@ -67,7 +72,13 @@ const PokemonList = () => {
             { isFetching ? (
                 <Loading/>
             ) : (
-                <Pokemonnya data={data} t={totalPokemon} />
+                <div className="pokemon-home">
+                    <Pokemonnya data={data} t={totalPokemon} />
+                    <div className="pager">
+                        <nav onClick={prevPage}>Prev Page</nav>
+                        <nav onClick={nextPage}>Next Page</nav>
+                    </div>
+                </div>
             )}
         </>
     )

@@ -1,7 +1,7 @@
 import axios from './axios';
 
-export async function apiFindAllPokemon() {
-    const uri = 'pokemon?limit=10&offset=50';
+export async function apiFindAllPokemon(url) {
+    const uri = url;
     try{
         const response = await axios({
             method: 'GET',
@@ -14,7 +14,7 @@ export async function apiFindAllPokemon() {
 }
 
 export async function apiFindOnePokemon(name){
-    const uri = `pokemon/${name}`;
+    const uri = `https://pokeapi.co/api/v2/pokemon/${name}`;
     try{
         const response = await axios({
             method: 'GET',
