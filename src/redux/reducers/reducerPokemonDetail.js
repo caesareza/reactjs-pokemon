@@ -25,7 +25,6 @@ export default function (state = initialState, action){
                 isFetching: false,
                 data: {
                     name: action.payload.data.name,
-                    photo: action.payload.data.sprites.front_default,
                     other: action.payload.data
                 },
                 error: null
