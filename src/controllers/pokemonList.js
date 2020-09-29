@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import { useHistory } from "react-router-dom";
-import {fetchPokemon} from '../../redux/reduxPokemonList';
+import {fetchPokemon} from '../redux/reduxPokemonList';
 
 const Loading = _ => (
     <>
@@ -56,7 +56,7 @@ const PokemonList = () => {
         loadPokemon(nextUrl);
     }
 
-    const prevPage = (prev) => {
+    const prevPage = () => {
         loadPokemon(prevUrl);
     }
 

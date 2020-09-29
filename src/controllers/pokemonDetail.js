@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams, useHistory} from 'react-router-dom';
-import {fetchOnePokemon, catchThePokemon} from '../../redux/reduxPokemonList';
+import {fetchOnePokemon, catchThePokemon} from '../redux/reduxPokemonList';
 
 const Loading = _ => (
     <div className="pokemon-loader">
