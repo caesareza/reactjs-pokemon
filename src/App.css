@@ -53,9 +53,13 @@ footer .sitemap a{
   cursor: pointer;
   display: block;
   padding: 15px;
+  display: flex;
 }
 .pokemons .list .link:hover{
   color: teal;
+}
+.pokemons .list .link .name{
+  flex: 1;
 }
 
 .pokemons-detail{
@@ -202,7 +206,8 @@ footer .sitemap a{
   border-radius: 5px;
   padding: 10px 25px;
   background: #e3e3e3;
-  /*border: 1px solid #ccc;*/
+  margin: 15px 0;
+  box-shadow: 2px 5px 10px -10px #000;
 }
 .my-pokemon-list .i .name{
   font-weight: 300;
