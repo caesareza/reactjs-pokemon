@@ -1,7 +1,7 @@
 import {apiFindAllPokemon, apiFindOnePokemon} from './api/apiPokemon';
 import { findAllPokemonBegin, findAllPokemonSuccess, findAllPokemonError } from './actions/actionPokemonList';
 import { findOnePokemonBegin, findOnePokemonSuccess, findOnePokemonError } from './actions/actionPokemonDetail';
-import { catchPokemon } from './actions/actionMyPokemon';
+import { catchPokemon, releasePokemon, releaseAllPokemon } from './actions/actionMyPokemon';
 
 export const fetchPokemon = payload => async dispatch => {
     try{
@@ -37,3 +37,22 @@ export const catchThePokemon = payload => async dispatch => {
     }
 }
 
+export const releaseOnePokemon = payload => async dispatch => {
+    try{
+        dispatch(releasePokemon(payload))
+        return true;
+    }catch (e) {
+        dispatch(releasePokemon(e))
+        return e;
+    }
+}
+
+export const releaseAllMyPokemon = payload => async dispatch => {
+    try{
+        dispatch(releaseAllPokemon(payload))
+        return true;
+    }catch (e) {
+        dispatch(releaseAllPokemon())
+        return e;
+    }
+}
