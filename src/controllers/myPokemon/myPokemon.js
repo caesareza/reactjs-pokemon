@@ -1,51 +1,51 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {releaseOnePokemon, releaseAllMyPokemon} from '../../redux/reduxPokemonList';
 
 const MyPokemonRelaseAll = ({releaseAllAction}) => (
     <>
-        <div className="alert alert-notif" onClick={releaseAllAction}>
-            Relase All Pokemons
-        </div>
+        <nav className="release-all" onClick={releaseAllAction}>
+            Relase All My Pokemon(s)
+        </nav>
     </>
 )
 
 const MyPokemonNotification = _ => (
     <>
         <div className="alert alert-notif">
-            You haven't catch any pokemon yet -_-
+            You haven't catch any pokemon yet
         </div>
     </>
 )
 
 const MyPokemonContainer = ({data, releaseAction}) => (
-    <>
+    <div className="my-pokemon-list">
         <h1 title="My Pokemon">My Pokemon</h1>
         {
             data.map((pokemon, index) => (
-                <div key={index}>
-                    {pokemon.pokemonname}
-                    {pokemon.nickname}
-                    <nav onClick={() => releaseAction(pokemon.nickname)}>
+                <div className="i" key={index}>
+                    <div className="name">Pokemon: {pokemon.pokemonname}</div>
+                    <div className="nickname">Nick Name: {pokemon.nickname}</div>
+                    <nav className="release-one" onClick={() => releaseAction(pokemon.nickname)}>
                         Release
                     </nav>
                 </div>
             ))
         }
-    </>
+    </div>
 )
 
 const MyPokemon = () => {
     const dispatch = useDispatch();
     const data = useSelector(state => state.pokemonxMy.mypokemons);
 
-    const releaseOnePokeonAction = useCallback((data) => {
+    const releaseOnePokemonAction = useCallback((data) => {
         return dispatch(releaseOnePokemon({ mypokemons: data }));
     }, [dispatch]);
 
-    const releasePokemon = (nickname) => {
+    const releaseSelectedPokemon = (nickname) => {
         const res = data.filter(nn => nn.nickname !== nickname);
-        if(res) releaseOnePokeonAction(res);
+        if(res) releaseOnePokemonAction(res);
     }
 
     const releaseAllPokemonAction = useCallback(() => {
@@ -59,10 +59,10 @@ const MyPokemon = () => {
     return(
         <>
             { data.length > 0 ? (
-                <>
-                    <MyPokemonContainer data={data} releaseAction={releasePokemon} />
+                <div className="my-pokemon">
+                    <MyPokemonContainer data={data} releaseAction={releaseSelectedPokemon} />
                     <MyPokemonRelaseAll releaseAllAction={releaseAllPokemon} />
-                </>
+                </div>
             ) : (
                 <MyPokemonNotification />
             )}
