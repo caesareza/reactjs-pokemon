@@ -6,9 +6,12 @@ import {
 
 const initialState = {
     count: 0,
-    data: [],
     isFetching: false,
+    data: [],
     error: null,
+    url: 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0',
+    nextUrl: null,
+    prevUrl: null,
 }
 
 export default function (state = initialState, action) {
@@ -24,7 +27,9 @@ export default function (state = initialState, action) {
                 count: action.payload.count,
                 isFetching: false,
                 data: action.payload.results,
-                error: null
+                error: null,
+                nextUrl: action.payload.next,
+                prevUrl: action.payload.previous
             }
         case POKEMON_ERROR:
             return {
