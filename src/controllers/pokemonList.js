@@ -35,12 +35,10 @@ const Pokemonnya = ({data = [], t}) => {
 
 const PokemonList = () => {
     const dispatch = useDispatch();
-    const { count, data, isFetching, error, url, prevUrl, nextUrl, mypokemons } = useSelector(
+    const { data, isFetching, url, prevUrl, nextUrl, mypokemons } = useSelector(
         state => ({
-            count: state.pokemonx.count,
             data: state.pokemonx.data,
             isFetching: state.pokemonx.isFetching,
-            error: state.pokemonx.error,
             url: state.pokemonx.url,
             prevUrl: state.pokemonx.prevUrl,
             nextUrl: state.pokemonx.nextUrl,
