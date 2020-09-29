@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import {fetchOnePokemon, catchThePokemon} from '../../redux/reduxPokemonList';
 
 const Loading = _ => (
@@ -22,6 +22,7 @@ const SavePokemon = ({selectedPokemon}) => {
     const [nickName, setNickNamne] = useState('');
     const dispatch = useDispatch(); // hook dispatch
     const myPocketMonster = useSelector(state => state.pokemonxMy.mypokemons);
+    const history = useHistory();
 
     const savePokemonButton = (event) => {
         event.preventDefault();
@@ -46,6 +47,7 @@ const SavePokemon = ({selectedPokemon}) => {
         }
 
         dispatch(catchThePokemon({mypokemons : data}));
+        history.push('/my-pokemon');
     }
 
     return (
@@ -73,7 +75,7 @@ const PokemonDetailContainer = ({detail}) => (
         {
             detail.name && (
                 <>
-                    <div className="alert alert-red"></div>
+                    {/*<div className="alert alert-red"></div>*/}
                     <div className="foto">
                         <img src={detail.other.sprites.front_default} alt={detail.name} width="200px"/>
                     </div>
@@ -145,14 +147,13 @@ const PokemonDetail = () => {
             ) : (
                 <div className="pokemons-detail">
                     <PokemonDetailContainer detail={data}/>
-                    <SavePokemon selectedPokemon={data} />
-                    {/*{*/}
-                    {/*    isCaught ? (*/}
-                    {/*        <SavePokemon selectedPokemon={data} />*/}
-                    {/*    ) : (*/}
-                    {/*        <CatchPokemon lempar={catchUsingPokemonBall} throwing={throwing}/>*/}
-                    {/*    )*/}
-                    {/*}*/}
+                    {
+                        isCaught ? (
+                            <SavePokemon selectedPokemon={data} />
+                        ) : (
+                            <CatchPokemon lempar={catchUsingPokemonBall} throwing={throwing}/>
+                        )
+                    }
                 </div>
             )}
         </>

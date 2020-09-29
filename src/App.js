@@ -12,7 +12,7 @@ function App() {
             <div className="page">
                 <header>
                     <div className="logo">
-                        <Link to="/"><img src={logo} /></Link>
+                        <Link to="/"><img src={logo} alt="logo poke api" /></Link>
                     </div>
                     <div className="menu">
                         <Link to="/">Home</Link>
