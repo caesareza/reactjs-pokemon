@@ -9,20 +9,26 @@ const Loading = _ => (
     </>
 )
 
-const Pokemonnya = ({data = [], detailPokemon}) => (
-    <div className="pokemons">
-        {data.map((pokemon, index) => (
-            <div key={index} className="list">
-                <div className="link" onClick={() => detailPokemon(pokemon.name)}>
-                    {pokemon.name}
+const Pokemonnya = ({data = []}) => {
+    const history = useHistory();
+    const linkDetailPokemon = (name) => {
+        history.push(`pokemon/${name}`);
+    }
+
+    return(
+        <div className="pokemons">
+            {data.map((pokemon, index) => (
+                <div key={index} className="list">
+                    <div className="link" onClick={() => linkDetailPokemon(pokemon.name)}>
+                        {pokemon.name}
+                    </div>
                 </div>
-            </div>
-        ))}
-    </div>
-)
+            ))}
+        </div>
+    )
+}
 
 const PokemonList = () => {
-    const history = useHistory();
     const dispatch = useDispatch();
     const {
         count,
@@ -43,25 +49,11 @@ const PokemonList = () => {
         return dispatch(fetchPokemon());
     }, [dispatch]);
 
-    const handleDetailPokemon = (name) => {
-        history.push(`pokemon/${name}`);
-    }
-
-
-
     useEffect(() => {
         // page title
         document.title = 'Catch - Pokemon';
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
         if (data.length === 0) loadPokemon();
-
-
-        if(mypokemons.length > 0){
-            console.log('mypokemons');
-            console.log(mypokemons[0].name);
-
-        }
-
     }, [loadPokemon, data])
 
     return (
@@ -69,7 +61,7 @@ const PokemonList = () => {
             { isFetching ? (
                 <Loading/>
             ) : (
-                <Pokemonnya data={data} detailPokemon={handleDetailPokemon} />
+                <Pokemonnya data={data} />
             )}
         </>
     )

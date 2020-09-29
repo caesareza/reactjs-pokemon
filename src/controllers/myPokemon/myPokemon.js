@@ -12,7 +12,9 @@ const MyPokemon = () => {
 
     return(
         <>
-           asd
+           <div className="alert alert-notif">
+               You haven't catch any pokemon yet -_-
+           </div>
         </>
     )
 }
