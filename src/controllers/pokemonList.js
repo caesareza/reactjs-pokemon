@@ -4,9 +4,13 @@ import { useHistory } from "react-router-dom";
 import {fetchPokemon} from '../redux/reduxPokemonList';
 
 const Loading = _ => (
-    <>
-        Loading ..
-    </>
+    <div className="pokemon-loader-home">
+        <div className="h"></div>
+        <div className="h"></div>
+        <div className="h"></div>
+        <div className="h"></div>
+        <div className="h"></div>
+    </div>
 )
 
 const Pokemonnya = ({data = [], t}) => {
@@ -65,7 +69,7 @@ const PokemonList = () => {
         document.title = 'Catch - Pokemon';
         // jika data exist tapi nama pokemon yang direquest tidak ada di redux maka hit fungsi boundAction()
         if (data.length === 0) loadPokemon(url);
-    }, [loadPokemon, data])
+    }, [loadPokemon, data, url])
 
     return (
         <>

@@ -20,6 +20,7 @@ const Loading = _ => (
 
 const SavePokemon = ({selectedPokemon}) => {
     const [nickName, setNickNamne] = useState('');
+    const [toaster, setToaster] = useState(false);
     const dispatch = useDispatch(); // hook dispatch
     const myPocketMonster = useSelector(state => state.pokemonxMy.mypokemons);
     const history = useHistory();
@@ -30,6 +31,7 @@ const SavePokemon = ({selectedPokemon}) => {
         if(myPocketMonster.length > 0){
             const findMyPokemon = myPocketMonster.find(poke => poke.nickname === nickName)
             if(findMyPokemon){
+                setToaster(true);
                 return false;
             } else {
                 data = myPocketMonster.concat([
@@ -52,7 +54,13 @@ const SavePokemon = ({selectedPokemon}) => {
 
     return (
         <div className="pokemon-form">
-            <div className="alert alert-success">Yeay, you caught this pokemon</div>
+            {
+                toaster ? (
+                    <div className="alert alert-red">Nickname already taken</div>
+                ) : (
+                    <div className="alert alert-success">Yeay, you caught this pokemon</div>
+                )
+            }
             <form onSubmit={savePokemonButton}>
                 <input type="text" value={nickName} onChange={e => setNickNamne(e.target.value)}
                        placeholder="Give your pokemon nick name .. " required="required"/>
@@ -101,7 +109,7 @@ const PokemonDetail = () => {
     const {name} = useParams(); // ambil nama pokemon
     const [isCaught, setIsCaught] = useState(false);
     const [throwing, setThrowing] = useState(false);
-
+    const [notif, setNotif] = useState(false);
     const data = useSelector(state => state.pokemonxDetail.data); // data pokemon
     const isFetching = useSelector(state => state.pokemonxDetail.isFetching); // loading status
 
@@ -109,10 +117,11 @@ const PokemonDetail = () => {
     const catchUsingPokemonBall = () => {
         setThrowing(true);
         let throwProbability = Math.floor(Math.random() * Math.floor(2));
-        console.log(throwProbability);
         if (throwProbability === 1) {
             setIsCaught(true);
-            console.log('pokemon tertangkap');
+            // console.log('pokemon tertangkap');
+        } else {
+            setNotif(true);
         }
     }
 
@@ -135,6 +144,10 @@ const PokemonDetail = () => {
         // unmount throwing state
         return () => {
             setTimeout(() => {
+                setNotif(false);
+            }, 3000);
+
+            setTimeout(() => {
                 setThrowing(false);
             }, 3000);
         }
@@ -146,6 +159,14 @@ const PokemonDetail = () => {
                 <Loading/>
             ) : (
                 <div className="pokemons-detail">
+                    {
+                        notif && (
+                            <div className="toaster">
+                                Catch failed, your pokemon ball broken, catch again!
+                            </div>
+                        )
+                    }
+
                     <PokemonDetailContainer detail={data}/>
                     {
                         isCaught ? (

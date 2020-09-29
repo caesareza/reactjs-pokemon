@@ -107,6 +107,15 @@ footer .sitemap a{
   font-weight: 700;
   font-size: 12px;
 }
+.pokemons-detail .toaster{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: red;
+  color: #fff;
+  padding: 15px 0;
+}
 
 .pokemon-form{
   padding: 15px 0;
@@ -151,7 +160,7 @@ footer .sitemap a{
 }
 .alert.alert-red{
   background: indianred;
-  color: #3b898a;
+  color: #fff;
 }
 
 .pokemon-loader{}
@@ -174,6 +183,13 @@ footer .sitemap a{
   flex-basis: 47%;
   height: 50px;
   background: #ddd;
+}
+
+.pokemon-loader-home{}
+.pokemon-loader-home .h{
+  background: #ddd;
+  margin: 5px 0;
+  height: 50px;
 }
 
 .my-pokemon{}
@@ -200,6 +216,10 @@ footer .sitemap a{
 
 .my-pokemon-list{
   padding: 0 0 20px;
+}
+.my-pokemon-list h1{
+  text-align: center;
+  font-weight: 300;
 }
 .my-pokemon-list .i{
   background: tomato;
