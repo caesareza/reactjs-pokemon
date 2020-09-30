@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import PokemonList from './controllers/pokemonList';
 import PokemonDetail from './controllers/pokemonDetail';
 import MyPokemon from './controllers/myPokemon';
+import NotFoundPage from './controllers/notFoundPage';
 import logo from './pokeapi-logo.png';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                         <Route exact path="/" component={PokemonList}></Route>
                         <Route exact path="/pokemon/:name" component={PokemonDetail}></Route>
                         <Route exact path="/my-pokemon" component={MyPokemon}></Route>
+                        <Route component={NotFoundPage}></Route>
                     </Switch>
                 </div>
                 <footer>

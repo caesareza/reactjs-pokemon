@@ -1,13 +1,12 @@
 import {applyMiddleware, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+// import createLogger from 'redux-logger';
 import rootReducers from './reducers';
 import { persistStore } from 'redux-persist';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router'
 
 export const history = createBrowserHistory();
-// const persistedReducers = persistReducer(persistConfig, rootReducers);
 
 const configureStore = preloadedState => {
     const store = createStore(
@@ -15,7 +14,6 @@ const configureStore = preloadedState => {
         preloadedState,
         compose(applyMiddleware(
             thunk,
-            createLogger,
             routerMiddleware(history),
         ))
     )
