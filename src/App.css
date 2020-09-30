@@ -54,12 +54,17 @@ footer .sitemap a{
   display: block;
   padding: 15px;
   display: flex;
+  align-items: center;
 }
 .pokemons .list .link:hover{
   color: teal;
 }
 .pokemons .list .link .name{
   flex: 1;
+}
+.pokemons .list .link .own{
+  font-size: 12px;
+  color: #1f5148;
 }
 
 .pokemons-detail{

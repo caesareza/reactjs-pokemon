@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {releaseOnePokemon, releaseAllMyPokemon} from '../redux/reduxPokemonList';
 
@@ -55,6 +55,11 @@ const MyPokemon = () => {
     const releaseAllPokemon = () => {
         if(data) releaseAllPokemonAction();
     }
+
+    useEffect(() => {
+        // page title
+        document.title = 'My Pokemon - Pokemon';
+    }, [data])
 
     return(
         <>
