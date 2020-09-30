@@ -25,7 +25,7 @@ const Pokemonnya = ({data = [], t}) => {
                 <div key={index} className="list">
                     <div className="link" onClick={() => linkDetailPokemon(pokemon.name)}>
                         <div className="name">{pokemon.name}</div>
-                        <div className="own">{t(pokemon.name)}</div>
+                        <div className="own">Owning: {t(pokemon.name)}</div>
                     </div>
                 </div>
             ))}
