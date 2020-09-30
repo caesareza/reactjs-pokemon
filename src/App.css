@@ -87,7 +87,6 @@ footer .sitemap a{
 }
 .pokemons-detail .stats{
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   margin: 15px 0;
@@ -96,9 +95,8 @@ footer .sitemap a{
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc;
-  border-top: none;
-  padding: 10px 20px;
-  width: 37%;
+  padding: 5px 0;
+  flex-basis: 49%;
 }
 .pokemons-detail .stats .stats-item:nth-child(2n){
   border-left: none;
@@ -175,12 +173,13 @@ footer .sitemap a{
 }
 .pokemon-loader .btm{
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  margin: -5px;
+  margin: -2px;
 }
 .pokemon-loader .btm .btm-l{
-  margin: 5px;
-  flex-basis: 47%;
+  margin: 1px;
+  flex-basis: 49%;
   height: 50px;
   background: #ddd;
 }
@@ -264,4 +263,10 @@ footer .sitemap a{
 .pokemon-home .pager nav{
   flex: 1;
   margin: 5px;
+}
+
+.custom-404{}
+.custom-404 img{
+  width: 100%;
+  object-fit: cover;
 }

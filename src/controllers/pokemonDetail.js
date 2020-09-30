@@ -18,6 +18,12 @@ const Loading = _ => (
     </div>
 )
 
+const Toaster = _ => (
+    <div className="toaster">
+        Catch failed, your pokemon ball broken, catch again!
+    </div>
+)
+
 const SavePokemon = ({selectedPokemon}) => {
     const [nickName, setNickNamne] = useState('');
     const [toaster, setToaster] = useState(false);
@@ -83,7 +89,6 @@ const PokemonDetailContainer = ({detail}) => (
         {
             detail.name && (
                 <>
-                    {/*<div className="alert alert-red"></div>*/}
                     <div className="foto">
                         <img src={detail.other.sprites.front_default} alt={detail.name} width="200px"/>
                     </div>
@@ -160,11 +165,7 @@ const PokemonDetail = () => {
             ) : (
                 <div className="pokemons-detail">
                     {
-                        notif && (
-                            <div className="toaster">
-                                Catch failed, your pokemon ball broken, catch again!
-                            </div>
-                        )
+                        notif && (<Toaster />)
                     }
 
                     <PokemonDetailContainer detail={data}/>
